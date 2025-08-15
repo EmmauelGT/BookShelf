@@ -17,5 +17,10 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
+# Instala Flask explícitamente y usa gunicorn para producción
+RUN pip install flask gunicorn
+
 # Comando para iniciar la aplicación
-CMD ["flask", "run"]
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+

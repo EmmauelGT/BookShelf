@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar libro' if book else 'Agregar libro' }}{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>{{ 'Editar libro' if book else 'Agregar libro a BookShelf' }}</h2>
+  <form method="POST">
+    <label>Título</label>
+    <input type="text" name="title" value="{{ book.title if book else '' }}" required>
+    <label>Autor</label>
+    <input type="text" name="author" value="{{ book.author if book else '' }}" required>
+    <label>Estado</label>
+    <select name="status">
+      {% set s = book.status if book else 'Pendiente' %}
+      <option value="Pendiente" {{ 'selected' if s=='Pendiente' else '' }}>Pendiente</option>
+      <option value="Leyendo" {{ 'selected' if s=='Leyendo' else '' }}>Leyendo</option>
+      <option value="Leído" {{ 'selected' if s=='Leído' else '' }}>Leído</option>
+    </select>
+    <button class="btn" type="submit">{{ 'Actualizar' if book else 'Agregar' }}</button>
+  </form>
+</section>
+{% endblock %}
+
+
+
+

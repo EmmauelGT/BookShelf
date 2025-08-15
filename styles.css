@@ -1,0 +1,55 @@
+:root{
+  --blue:#a3d2ca; --pink:#fcbad3; --yellow:#ffedda; --lilac:#cdb4db; --green:#b5ead7; --ink:#2b2d42;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--yellow);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;color:var(--ink);}
+
+/* Header */
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:var(--lilac);box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:0;z-index:10}
+.brand{font-family:Georgia,serif;font-size:22px;letter-spacing:.5px}
+.site-header nav a{margin-left:14px;text-decoration:none;color:#333;font-weight:600;opacity:.85}
+.site-header nav a:hover{opacity:1;text-decoration:underline}
+
+/* Layout */
+.container{max-width:980px;margin:24px auto;padding:0 16px}
+.site-footer{text-align:center;color:#666;padding:24px}
+
+/* Cards / Paneles */
+.card,.panel{background:#fff;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.08);padding:22px}
+.panel{max-width:420px;margin:0 auto;background:rgba(255,255,255,.92);backdrop-filter:blur(2px)}
+
+/* Botones */
+.btn{display:inline-block;background:var(--blue);color:#213;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer;transition:.15s box-shadow,.15s transform}
+.btn:hover{box-shadow:0 6px 18px rgba(0,0,0,.12);transform:translateY(-1px)}
+.btn.small{padding:6px 10px;font-size:.9rem;border-radius:10px}
+.btn.danger{background:#ffb3c1}
+
+/* Tabla */
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid #eee;background:#fff}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid #f1f1f1}
+.table thead{background:#faf7ff}
+
+/* Flash */
+.flash{padding:10px 12px;border-radius:10px;margin-bottom:14px;font-weight:600}
+.flash.success{background:#e6ffed}
+.flash.info{background:#e8f2ff}
+.flash.danger{background:#ffe8e8}
+
+/* Formularios */
+label{display:block;margin-top:10px;margin-bottom:6px;font-weight:600}
+input,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;background:#fff}
+input:focus,select:focus{outline:none;border-color:#bbb;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+.error{color:#d90429;font-size:.9rem;margin-top:4px;min-height:1.2em}
+.muted{color:#777}
+
+/* Login con fondo realista */
+.hero.hero-login{
+  background-image:url("/static/biblioteca.jpg");
+  background-size:cover;background-position:center;
+  padding:80px 16px;display:flex;justify-content:center;align-items:center;
+}
+
+
+
+

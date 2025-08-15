@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<section class="hero hero-login" role="banner">
+  <div class="panel">
+    <h2>Bienvenido a BookShelf</h2>
+    <form method="POST" action="{{ url_for('login') }}" novalidate>
+      <label>Usuario</label>
+      <input type="text" name="username" required>
+      <label>Contraseña</label>
+      <input type="password" name="password" required>
+      <button type="submit" class="btn">Iniciar sesión</button>
+      <p class="muted">¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate</a></p>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+
+
+

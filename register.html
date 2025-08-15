@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>Crea tu cuenta en BookShelf</h2>
+  <form id="registerForm" method="POST" action="{{ url_for('register') }}" novalidate>
+    <label>Usuario</label>
+    <input type="text" name="username" required minlength="3">
+
+    <label>Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+    <div id="emailError" class="error"></div>
+
+    <label>Fecha de nacimiento</label>
+    <input type="date" id="birth_date" name="birth_date" required>
+    <div id="ageError" class="error"></div>
+
+    <label>Contraseña</label>
+    <input type="password" id="password" name="password" required minlength="8" 
+           placeholder="8+ con mayúsculas, minúsculas, números y símbolos">
+    <div id="pwError" class="error"></div>
+
+    <button id="submitBtn" type="submit" class="btn">Registrarse</button>
+  </form>
+</section>
+
+<script>
+  const email = document.getElementById('email');
+  const birth = document.getElementById('birth_date');
+  const pw = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const ageError = document.getElementById('ageError');
+  const pwError = document.getElementById('pwError');
+  const submitBtn = document.getElementById('submitBtn');
+
+  let okEmail=false, okAge=false, okPw=false;
+  const checkBtn = () => submitBtn.disabled = !(okEmail && okAge && okPw);
+
+  email.addEventListener('blur', () => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!re.test(email.value.trim())) {
+      emailError.textContent = "Correo inválido.";
+      okEmail = false;
+    } else { emailError.textContent = ""; okEmail = true; }
+    checkBtn();
+  });
+
+  birth.addEventListener('blur', () => {
+    if (!birth.value) { ageError.textContent = "Selecciona tu fecha."; okAge=false; checkBtn(); return;}
+    const b = new Date(birth.value);
+    const today = new Date();
+    let age = today.getFullYear() - b.getFullYear();
+    const m = today.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < b.getDate())) age--;
+    if (age < 18) { ageError.textContent = "Debes ser mayor de 18 años."; okAge=false; }
+    else { ageError.textContent = ""; okAge=true; }
+    checkBtn();
+  });
+
+  pw.addEventListener('blur', () => {
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    if (!re.test(pw.value)) {
+      pwError.textContent = "Contraseña insegura.";
+      okPw = false;
+    } else { pwError.textContent = ""; okPw = true; }
+    checkBtn();
+  });
+
+  // estado inicial
+  checkBtn();
+</script>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Panel{% endblock %}
+{% block content %}
+<section class="card">
+  <h2>Bienvenido a BookShelf, {{ user.username }}</h2>
+  <a href="{{ url_for('add_book') }}" class="btn">Agregar nuevo libro</a>
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>Título</th><th>Autor</th><th>Estado</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.status }}</td>
+          <td>
+            <a class="btn small" href="{{ url_for('edit_book', book_id=book.id) }}">Editar</a>
+            <form method="POST" action="{{ url_for('delete_book', book_id=book.id) }}" style="display:inline">
+              <button class="btn small danger" type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="muted">Aún no hay libros. ¡Agrega el primero!</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+
+
+
+
